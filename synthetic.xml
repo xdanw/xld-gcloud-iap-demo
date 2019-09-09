@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <type type="gcloud.Tunnel" extends="generic.ExecutedScript" deployable-type="gcloud.IapTunnel" container-type="gcloud.TunnelConfiguration" description="(gcloud.Tunnel)">
+    <generate-deployable type="gcloud.IapTunnel" extends="udm.BaseDeployableArtifact" description="(gcloud.IapTunnel) Represents an active IAP tunnel"/>
+    <property name="createScript" default="gcloud/StartIapTunnel" hidden="true" />
+    <property name="createVerb" kind="string" default="Start IAP Tunnel" hidden="true"/>
+    <property name="destroyScript" default="gcloud/StopGcloud" hidden="true" />
+    <property name="destroyVerb" kind="string" default="Stop Gcloud process (shuts down IAP tunnel)" hidden="true"/>
+  </type>
+
+  <type type="gcloud.TunnelConfiguration" extends="generic.Container" description="Parameters for a Google Cloud IAP tunnel">
+    <property name="gcpInstanceName" required="true" category="Google Cloud" description="Instance name" default="instance-1"/>
+    <property name="gcpZone" required="false" category="Google Cloud" description="Zone (recommended, gcloud can guess but not always)" default="us-central1-a"/>
+    <property name="gcpProject" required="true" category="Google Cloud" description="GCP project id (required, unless set up in advance)" default=""/>
+    <property name="targetPort" required="true" category="Google Cloud" description="Target port (default: SSH 22)" default="22"/>
+    <property name="localPort" required="true" category="Google Cloud" description="Local forwarding port (default: 2222)" default="2222"/>
+    <property name="gcpKeyfile" required="true" category="Google Cloud" kind="string" description="Path to service account JSON key file" default="key.txt"/>
+    <property name="clientPath" required="false" category="Google Cloud" description="Path to gcloud client" default=""/>
+    <property name="createOrder" kind="integer" default="30" hidden="true" />
+  </type>
+  
+</synthetic>
